@@ -65,10 +65,11 @@ int main(void) {
     }
     
 
-    // debug statements
+    /* debug statements
     printf("%d\n", letters);
     printf("%d\n", words);
     printf("%d\n", sentences);
     printf("%f\n", indexval);
     printf("%d\n", roundedIndex);
-}
+    */
+    }
