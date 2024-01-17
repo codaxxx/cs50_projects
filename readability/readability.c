@@ -16,6 +16,31 @@ int main(void) {
     fgets(sentence, sizeof(sentence), stdin);
     printf("%s\n", sentence);
 
+    // for loop to increment chars
+    for(int i = 0; i < strlen(sentence); i++) { 
+        if(isalpha(sentence[i])) {
+            letters++;
+        }
+    }
+
+    // for loop to increment words
+    for (int i = 0; i < strlen(sentence); i++) {
+        if(isspace(sentence[i])) {
+            words++;
+        }
+    }
+
+    // for loop to increment sentence count
+    for (int i = 0; i < strlen(sentence); i++) {
+        if(ispunct(sentence[i])) {
+            sentences++;
+        }
+    }
+
+    // debug statements
+    printf("%d\n", letters);
+    printf("%d\n", words);
+    printf("%d\n", sentences);
 
 /* PSEUDOCODE:
     print message for sentence input, store it as a string / array
