@@ -1,1 +1,1 @@
-This program evaluates the estimated grade level reading comprehension to understand this text.
+This program evaluates the estimated grade level reading comprehension needed to understand this text.
