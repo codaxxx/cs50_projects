@@ -8,7 +8,9 @@ int main(void) {
     int words = 0;
     int letters = 0;
     int sentences = 0;
-    int indexval = 0;
+    float l100 = 0.0;
+    float s100 = 0.0;
+    float indexval = 0.0;
     char sentence[500];
 
     // inputting strings
@@ -32,46 +34,41 @@ int main(void) {
 
     // for loop to increment sentence count
     for (int i = 0; i < strlen(sentence); i++) {
-        if(ispunct(sentence[i])) {
+        if(sentence[i] == '.' || sentence[i] == '!' || sentence[i] == '?') {
             sentences++;
         }
     }
+
+    // calculating average number of letters per 100 words
+    l100 = (float)letters / words * 100;
+
+    // calculating average number of sentences per 100 words. 
+    s100 = (float)sentences / words * 100;
+
+    // calculating Coleman Liau index value
+    indexval = 0.0588 * l100 - 0.296 * s100 -15.8;
+
+    // rounding indexval
+    int roundedIndex = (int)(indexval + 0.5);
+
+    // if statements to print desired outputs
+    if (roundedIndex < 1) { 
+        printf("Before Grade 1\n");
+    }
+    
+    else if (roundedIndex > 15) {
+        printf("Grade 16+\n");
+    }
+
+    else {
+        printf("Grade %d\n", roundedIndex);
+    }
+    
 
     // debug statements
     printf("%d\n", letters);
     printf("%d\n", words);
     printf("%d\n", sentences);
-
-/* PSEUDOCODE:
-    print message for sentence input, store it as a string / array
-    interate over array like in scrabble.c
-    increment wordcount by whitespace
-
-    increment letters
-    increment sentences by punctuatiion - how?
-
-    so three for loops?x
-    use it them to increment over string.
-
-*/
-
-
-/*
-l = letters
-w = words, # spaces + 1
-s = periods, q, !, etc
-
-coleman-liau index = 
-0.0588 * L - 0.296 * S - 15.8
-
-before grade 1
-grade 16+
-
-Round score to nearest whole number.
-
-L = average number of letters per 100 words
-S = # of sentences per 100 words
-
-*/
-    
+    printf("%f\n", indexval);
+    printf("%d\n", roundedIndex);
 }
