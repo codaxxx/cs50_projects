@@ -5,8 +5,10 @@
 int main(int argc, char *argv[]) {
 // maps user argument to pointer inputString. Declaring variables.
     char *cipher = argv[1];
-    char alphabet[26] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    char cipherout[500];
+    char upper[26] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    char lower[26] = "abcdefghijklmnopqrstuvwxyz";
+    char cipherlower[26];
+    char cipherout[500] = "";
     int counter = 0; // for confirming no repeat chars.
 
 // if statements to ensure that cmd line args are adequate
@@ -44,49 +46,30 @@ int main(int argc, char *argv[]) {
     char usrinput[500];
     printf("Plaintext: ");
     scanf("%s", usrinput);
-    printf("%s\n", usrinput);
 
 // using for loops to encipher text
     for (int i = 0; i < strlen(usrinput); i++) {
-        if (isalpha(usrinput[i])) {
-            for (int j = 0; j < strlen(alphabet); j++) {
-                if (usrinput[i] == alphabet[j]) {
-                    cipherout[i] = cipher[j];
+        if (isalpha(usrinput[i]) && isupper(usrinput[i])) {
+            for (int j = 0; j < strlen(upper); j++) {
+                if (usrinput[i] == upper[j]) {
+                    cipherout[i] = toupper(cipher[j]);
+                }
+            }
+        }
+        else if (isalpha(usrinput[i]) && islower(usrinput[i])) {
+            for (int j = 0; j < strlen(lower); j++) {
+                if (usrinput[i] == lower[j]) {
+                    cipherout[i] = tolower(cipher[j]);
                 }
             }
         }
         else {
+            if(ispunct(usrinput[i])){
             cipherout[i] = usrinput [i];
+            }
         }
     }
 
-
-// debug statements
-    printf("%s\n", cipher);
-    printf("%s\n", cipherout);
+    printf("ciphertext: %s\n", cipherout);
 
 }
-
-/* Requirements
-
-create arrays for key
-create arrays for plaintext
-create arrays for cipher text
-
-case insensitive key
-
-case sensitive output
-
-return 1 for error
-
-
-how do I create a command line arg with the initializing of the program?
-.
-To Do:
-Get Key
-validate key
-get plaintext
-encipher
-print cipher text
-
-*/
